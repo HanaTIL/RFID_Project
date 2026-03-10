@@ -56,7 +56,7 @@ sudo journalctl -u rfid_hw -u rfid_logic -f
 
 ##  Hardware Verification
 To ensure SPI timing and signal integrity, the driver was verified using a **Logic Analyzer**. 
-The screenshots below confirm the 1MHz clock stability and the MOSI/MISO handshake during a MIFARE Authenticate command.
+The screenshots below shows the UID on MOSI Line.
 
 ![SPI Logic Trace](docs/logic_analyzer_capture.png)
 
