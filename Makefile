@@ -1,10 +1,10 @@
 # --- Variables ---
-CC = gcc
+CC ?= gcc
 
-CFLAGS = -Wall -Iinclude -fPIC
+CFLAGS ?= -Wall -Iinclude -fPIC
 
 
-LDFLAGS = -L. -Wl,-rpath,.
+LDFLAGS ?= -L. -Wl,-rpath,.
 
 LIB_NAME = libmfrc522.so
 ADMIN_BIN = admin_tool
