@@ -4,7 +4,7 @@ CC ?= gcc
 CFLAGS ?= -Wall -Iinclude -fPIC
 
 
-LDFLAGS ?= -L. -Wl,-rpath,.
+LDFLAGS += -L. -Wl,-rpath,.
 
 LIB_NAME = libmfrc522.so
 ADMIN_BIN = admin_tool
@@ -22,7 +22,7 @@ DAEMON_SRC = rfid_daemon.c
 all: $(LIB_NAME) $(ADMIN_BIN) $(DAEMON_BIN)
 
 $(LIB_NAME): $(LIB_OBJS)
-	$(CC) -shared -o $@ $^
+	$(CC) $(LDFLAGS) -shared -o $@ $^
 	@echo "Shared library $(LIB_NAME) created."
 
 src/%.o: src/%.c
