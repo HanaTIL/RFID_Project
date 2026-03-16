@@ -1,7 +1,7 @@
 # --- Variables ---
 CC ?= gcc
 
-CFLAGS ?= -Wall -I$(PWD)/include -fPIC
+CFLAGS ?= -Wall -I$(CURDIR)/include -fPIC
 
 
 LDFLAGS += -L. -Wl,-rpath,.
