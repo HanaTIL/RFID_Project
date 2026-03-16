@@ -3,9 +3,8 @@ Description=MFRC522 Hardware Interface Daemon
 After=network.target
 
 [Service]
-WorkingDirectory=/home/hana/RFID_Module
-ExecStart=/home/hana/RFID_Module/rfid_daemon
-Environment=LD_LIBRARY_PATH=/home/hana/RFID_Module
+ExecStart=/usr/bin/rfid_daemon
+
 
 Restart=always
 RestartSec=3
