@@ -1,0 +1,14 @@
+[Unit]
+Description=Initialize RFID SQLite Database
+# Run this before the logic starts
+Before=rfid_logic.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/bin/createDatabase.py
+# RemainAfterExit=yes keeps the service "active" so it doesn't re-run
+RemainAfterExit=yes
+User=root
+
+[Install]
+WantedBy=multi-user.target
