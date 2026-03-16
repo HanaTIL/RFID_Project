@@ -48,22 +48,26 @@ sudo raspi-config
 ```
 
 📋 Installation & Deployment
-```text
-Build System:
-make (Generates the Shared Library and binaries with RPATH linking)
-Initialize Databases:
-python3 createDatabase.py
-Install System Services:
-bash
-sudo cp *.service /etc/systemd/system/
-sudo ln -s /home/hana/RFID_Module/rfid_daemon /usr/bin/rfid_daemon
-sudo ln -s /home/hana/RFID_Module/libmfrc522.so /usr/lib/libmfrc522.so
-sudo ldconfig
-sudo systemctl daemon-reload
-sudo systemctl enable rfid_hw.service rfid_logic.service
-sudo systemctl start rfid_hw rfid_logic
+### Local Installation (Manual/Non-Yocto)
+If you are not using the Yocto Project to build a custom image, follow these steps to install the RFID project on a standard Raspberry Pi OS:
 
-Monitor System Logs:
+```text
+1. Initialize Database:
+python3 createDatabase.py
+2. **Build the project**:
+   ```bash
+   make
+3. Install binaries and libraries:
+sudo cp rfid_daemon gateKeeper.py /usr/bin/
+sudo cp libmfrc522.so /usr/lib/
+sudo ldconfig
+
+4. Install and enable Systemd services:
+sudo cp *.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now rfid_hw rfid_logic
+
+5. Monitor System Logs:
 sudo journalctl -u rfid_hw -u rfid_logic -f
 ```
 
