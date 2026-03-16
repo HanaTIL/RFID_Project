@@ -56,6 +56,9 @@ python3 createDatabase.py
 Install System Services:
 bash
 sudo cp *.service /etc/systemd/system/
+sudo ln -s /home/hana/RFID_Module/rfid_daemon /usr/bin/rfid_daemon
+sudo ln -s /home/hana/RFID_Module/libmfrc522.so /usr/lib/libmfrc522.so
+sudo ldconfig
 sudo systemctl daemon-reload
 sudo systemctl enable rfid_hw.service rfid_logic.service
 sudo systemctl start rfid_hw rfid_logic
