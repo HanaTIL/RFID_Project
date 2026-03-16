@@ -55,7 +55,6 @@ If you are not using the Yocto Project to build a custom image, follow these ste
 1. Initialize Database:
 python3 createDatabase.py
 2. Build the project:
-   bash
    make
 3. Install binaries and libraries:
 sudo cp rfid_daemon gateKeeper.py /usr/bin/
