@@ -1,6 +1,5 @@
 [Unit]
 Description=RFID Access Control Logic (Python)
-# This ensures Python doesn't start until the C Socket is ready
 After=rfid_hw.service
 Requires=rfid_hw.service
 
