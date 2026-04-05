@@ -3,7 +3,7 @@ import sqlite3
 import signal
 import sys
 
-# 1. Setup SQLite Database
+#  Setup SQLite Database
 def init_db():
     conn = sqlite3.connect("rfid_access.db")
     cursor = conn.cursor()
@@ -15,7 +15,7 @@ def init_db():
     conn.commit()
     return conn
 
-# 2. Connect to the C Daemon "Phone Line"
+# Connect to the C Daemon 
 SOCKET_PATH = "/tmp/rfid.sock"
 
 def main():
@@ -30,20 +30,19 @@ def main():
         print("[+] Connected! Waiting for RFID scans...")
 
         while True:
-            # 3. Receive exactly 16 bytes (The Name)
+            # Receive exactly 16 bytes (Name)
             data = client.recv(16)
             if not data:
                 print("[!] C Daemon closed the connection.")
                 break
 
-            # 4. Clean the data (remove trailing spaces/nulls)
-            # Use 'latin-1' or 'ascii' to match your C buffer
+            #  Clean the data 
             raw_name = data.decode('ascii', errors='ignore').strip()
             
             if raw_name:
                 print(f"[EVENT] Scanned: {raw_name}")
 
-                # 5. Save to SQLite
+                # Save to SQLite
                 cursor.execute("INSERT INTO access_logs (name) VALUES (?)", (raw_name,))
                 db_conn.commit()
                 print(f"[DB] Logged {raw_name} to rfid_access.db")
